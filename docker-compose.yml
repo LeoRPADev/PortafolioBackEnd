@@ -1,0 +1,21 @@
+services:
+    db:
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: pass
+        image: mongo:7.0
+        volumes:
+            - db-data:/data/db
+        ports:
+          - "27017:27017"
+    portafolio:
+      build:
+          dockerfile: .dockerfile
+      ports:
+        - 8080:8080
+      command: uvicorn src.main:app --reload --port 8080 --host 0.0.0.0 
+      #command: echo "$(pwd)"; ls
+      depends_on:
+        - db
+volumes:
+  db-data: 
