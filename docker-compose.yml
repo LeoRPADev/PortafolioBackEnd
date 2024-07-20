@@ -14,7 +14,8 @@ services:
       ports:
         - 8080:8080
       command: uvicorn src.main:app --reload --port 8080 --host 0.0.0.0 
-      #command: echo "$(pwd)"; ls
+      volumes:
+        - ./src:/app/src
       depends_on:
         - db
 volumes:
