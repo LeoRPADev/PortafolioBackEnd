@@ -1,0 +1,11 @@
+[tool.ruff]
+exclude = ["env"]
+line-length = 100
+
+[tool.mypy]
+python_version = 3.11
+exclude = ["env"]
+
+[[tool.mypy.overrides]]
+module = "test"
+warn_return_any = false
