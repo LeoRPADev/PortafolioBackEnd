@@ -1,2 +1,2 @@
 #!/bin/bash
-docker compose -f docker-compose.yml run portafolio bash
+docker compose -f docker-compose.yml run -p 8080:8080  portafolio bash
