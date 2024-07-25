@@ -1,0 +1,42 @@
+#!/bin/bash
+
+help()
+{
+   echo "run [option]"
+   echo
+   echo "options:"
+   echo " server    starts the server"
+   echo " mypy      executes mypy (type checker)"
+   echo " ruff      executes ruff (linter)"
+   echo " sca       executes both tools"
+   echo " help      shows this message"
+   echo
+}
+if [ $# -ne 1 ]; then
+   help
+   exit 1
+fi
+
+case $1 in
+   help)
+      help
+   ;;
+   server)
+      uvicorn src.main:app --reload --port 8080 --host 0.0.0.0
+   ;;
+   mypy)
+      mypy . --strict
+   ;;
+   ruff)
+      ruff format .
+   ;;
+   sca)
+      set -eux
+      mypy . --strict
+      ruff format .
+   ;;
+   *)
+      echo "Invalid option: $1"
+      help
+   ;;
+esac

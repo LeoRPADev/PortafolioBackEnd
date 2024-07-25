@@ -13,5 +13,6 @@ $ docker compose -f docker-compose.yml build
 Levantar el servidor
 
 ```
-$ docker compose -f docker-compose.yml up
+$ ./up
+# run server
 ```
