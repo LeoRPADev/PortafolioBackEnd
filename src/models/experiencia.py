@@ -1,9 +1,11 @@
+from typing import Any
 from pymongo.collection import Collection
 
 from src.models.base import DBModel, PydanticOID
 from src.models.mongo_config import database
 
-class ExperienciaBase(DBModel):
+
+class Experiencia(DBModel):
     persona_id: PydanticOID
     cargo: str
     empleador: str
@@ -11,6 +13,5 @@ class ExperienciaBase(DBModel):
     termino: str
     descripcion: str
 
-class Experiencia(ExperienciaBase):
-    def get_collection() -> Collection[ExperienciaBase]:
-        return database["experiencias"]
+
+experiencia_collection: Collection[dict[str, Any]] = database["experiencias"]

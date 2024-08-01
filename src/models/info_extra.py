@@ -1,15 +1,14 @@
-from pydantic import BaseModel
+from typing import Any
 from pymongo.collection import Collection
 
-from src.models.base import PydanticOID
+from src.models.base import DBModel, PydanticOID
 from src.models.mongo_config import database
 
-class InformacionExtraBase(BaseModel):
+
+class InformacionExtra(DBModel):
     persona_id: PydanticOID
     titulo: str
     contenido: str
 
 
-class InformacionExtra(InformacionExtraBase):
-    def get_collection() -> Collection[InformacionExtraBase]:
-        return database["extras"]
+informacion_extra_collection: Collection[dict[str, Any]] = database["extras"]
