@@ -17,6 +17,7 @@ services:
       volumes:
         - ./src:/app/src
         - ./run:/usr/bin/run
+        - ./.env:/app/.env
       depends_on:
         - db
 volumes:

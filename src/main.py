@@ -1,12 +1,8 @@
 from fastapi import FastAPI
+from src.view.healthcheck import router as healthcheck_router
+from src.view.persona import router as persona_router
 
 app = FastAPI()
 
-
-@app.get("/")
-def read_root() -> dict[str, str]:
-    return {"Hello": "World"}
-
-
-def base_datos() -> None:
-    return
+app.include_router(healthcheck_router)
+app.include_router(persona_router)
